@@ -54,15 +54,18 @@ async def on_message(message):
 
   await message.channel.send(response)
 
-async def send_message():
+async def send_message(channelids):
   await client.wait_until_ready()
-  channel = client.get_channel(1134258428907368508)
+  channels = []
+  for channelid in channelids:
+    channels.append(client.get_channel(channelid))
   counter = 1
 
   while not client.is_closed():
     message = check(0)
     if message != "":
-      await channel.send(message)
+      for channel in channels:
+        await channel.send(message)
     counter += 1
     await asyncio.sleep(60)
 
@@ -74,3 +77,5 @@ except KeyboardInterrupt:
   loop.run_until_complete(client.close())
 finally:
   loop.close()
+
+# 1134258428907368508
