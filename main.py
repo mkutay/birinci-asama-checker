@@ -11,7 +11,7 @@ tc = os.getenv("TC")
 url = "https://ebideb.tubitak.gov.tr/olimpiyatSinavSonucSistemi.htm"
 
 def bot():
-  ret = scraper.scrape(1, tc, url, "gh.jpg") # you could actually use anything for your session id
+  ret = scraper.scrape("1", tc, url, "gh.jpg") # you could actually use anything for your session id
 
   if ret == 0:
     ret = bot()
@@ -53,19 +53,18 @@ async def on_message(message):
 
   await message.channel.send(response)
 
-async def send_message(channelids):
+async def send_message():
   await client.wait_until_ready()
+  channelids = [1038196261309927444]
   channels = []
   for channelid in channelids:
     channels.append(client.get_channel(channelid))
-  counter = 1
 
   while not client.is_closed():
     message = check(0)
     if message != "":
       for channel in channels:
         await channel.send(message)
-    counter += 1
     await asyncio.sleep(5)
 
 loop = asyncio.get_event_loop()
