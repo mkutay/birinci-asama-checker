@@ -26,13 +26,15 @@ def solver(file, c):
 def isValid(text):
   if len(text) != 4:
     return False
-    
+  print(text)
+
   return not bool(re.compile(r'[^a-z0-9A-Z]').search(text))
 
 def csolver(file):
   ret = ""
   for c in range(0, 26, 2):
-    if isValid(solver(file, c)):
-      ret = solver(file, c)
+    solved = solver(file, c)
+    if isValid(solved):
+      ret = solved
       break
   return ret

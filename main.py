@@ -11,7 +11,7 @@ tc = os.getenv("TC")
 url = "https://ebideb.tubitak.gov.tr/olimpiyatSinavSonucSistemi.htm"
 
 def bot():
-  ret = scraper.scrape(sessionId, tc, url, "gh.jpg") # you could actually use anything for your session id
+  ret = scraper.scrape(1, tc, url, "gh.jpg") # you could actually use anything for your session id
 
   if ret == 0:
     ret = bot()
@@ -19,13 +19,12 @@ def bot():
   return ret
 
 def check(type): # if type == 1, then it is a message, otherwise it is a interval check
-  usernames = ["kuytay"]
+  usernames = ["kutaja"]
   mentions = ""
   for username in usernames:
-    print(mentions)
-    mentions += discord.utils.get(client.get_channel(1134258428907368508).guild.members, name=username).mention + " "
+    mentions += discord.utils.get(client.get_channel(1038196261309927444).guild.members, name=username).mention + " "
   if bot() == 1:
-    return f"results are out (for informatics birinci asama) {mentions}"
+    return f"results are out (at least for ortaokul bilgisayar birinci asama) {mentions}"
   else:
     if type == 1:
       return f"results are not out (for informatics birinci asama)"
@@ -67,7 +66,7 @@ async def send_message(channelids):
       for channel in channels:
         await channel.send(message)
     counter += 1
-    await asyncio.sleep(60)
+    await asyncio.sleep(5)
 
 loop = asyncio.get_event_loop()
 try:
@@ -77,5 +76,3 @@ except KeyboardInterrupt:
   loop.run_until_complete(client.close())
 finally:
   loop.close()
-
-# 1134258428907368508

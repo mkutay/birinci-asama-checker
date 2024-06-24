@@ -38,8 +38,8 @@ def scrape(sessionId, tc, url, file):
   payload = {
     "hdnSinavBilgileriniGetir": 1,
     "TCKimlikNo": tc,
-    "sinavYili": 2023,
-    "olimpiyatDal.id": 4,
+    "sinavYili": 2024,
+    "olimpiyatDal.id": 7,
     "olimpiyatSinavTurleri.id": 1,
     "guvenlik": captcha
   }
